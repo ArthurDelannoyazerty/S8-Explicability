@@ -1,26 +1,26 @@
+import tensorflow as tf
 from tensorflow import keras
-from keras.layers import Input, Conv2DTranspose
-from keras.models import Model
-from keras.initializers import Ones, Zeros
 import numpy as np
+import matplotlib.pyplot as plt
+import generate_model as gm
 
 model = keras.models.load_model('saliency\mnist_models')
 
-class SaliencyMask(object):
-    def __init__(self, model, output_index=0):
-        pass
+x_example = gm.x_test[0] # prendre la première image de test pour cet exemple
+x_example = x_example.reshape(1, 28, 28, 1)
+x_example = x_example / 255.0 # normalisation des pixels entre 0 et 1
 
-    def get_mask(self, input_image):
-        pass
+preds = model.predict(x_example)
+class_idx = np.argmax(preds[0])
 
-    def get_smoothed_mask(self, input_image, stdev_spread=.2, nsamples=50):
-        stdev = stdev_spread * (np.max(input_image) - np.min(input_image))
+# Calcul de la carte de saillance
+grads = tf.GradientTape().gradient(model.output[:, class_idx], model.input)[0]
+grads = tf.reduce_mean(grads, axis=3)[0]
+grads = np.maximum(grads, 0)
+grads /= np.max(grads)
 
-        total_gradients = np.zeros_like(input_image, dtype=np.float64)
-        for i in range(nsamples):
-            noise = np.random.normal(0, stdev, input_image.shape)
-            x_value_plus_noise = input_image + noise
-
-            total_gradients += self.get_mask(x_value_plus_noise)
-
-        return total_gradients / nsamples
+fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(8, 4))
+ax[0].imshow(x_example[0, :, :, 0], cmap='gray')
+ax[1].imshow(x_example[0, :, :, 0], cmap='gray')
+ax[1].imshow(grads, alpha=0.5, cmap='jet')
+plt.show()
