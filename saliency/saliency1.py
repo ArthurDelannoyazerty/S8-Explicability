@@ -2,7 +2,6 @@ from tensorflow import keras
 from vis.visualization import visualize_saliency
 from vis.utils import utils
 from keras import activations
-from collections.abc import Iterable
 import matplotlib.pyplot as plt
 import numpy as np
 import generate_model
