@@ -1,6 +1,7 @@
 import numpy as np
 from tensorflow import keras
 from keras import layers
+from keras.layers import Dense
 
 # Model / data parameters
 num_classes = 10
@@ -43,8 +44,8 @@ batch_size = 128
 epochs = 15
 
 model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
-
 model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_split=0.1)
+model.add(Dense(num_classes, activation='softmax', name='visualized_layer'))
 
 score = model.evaluate(x_test, y_test, verbose=0)
 print("Test loss:", score[0])
