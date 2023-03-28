@@ -6,7 +6,7 @@ model.summary()
 
 #-----------------------------------------------------------------------------
 from keras.utils import load_img
-from keras.applications.vgg16 import preprocess_input
+# from keras.applications.vgg16 import preprocess_input
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -19,8 +19,13 @@ img2 = load_img('images/1/img_2.jpg', target_size=(28, 28))
 img3 = load_img('images/2/img_16.jpg', target_size=(28, 28))
 images = np.asarray([np.array(img1), np.array(img2), np.array(img3)])
 
+# Test model
+# predictions = model.predict(img1)
+# prediction_class = np.argmax(predictions[0])
+
+
 # Preparing input data for VGG16
-X = preprocess_input(images)
+# X = preprocess_input(images)
 
 # Rendering
 f, ax = plt.subplots(nrows=1, ncols=3, figsize=(12, 4))
