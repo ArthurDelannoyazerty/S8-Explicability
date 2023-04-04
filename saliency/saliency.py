@@ -51,6 +51,7 @@ plt.show()
 #---------------------------------------------------------------------------------------------------
 print("Executing : Modifying model")
 
+#Don't use softmax
 from tf_keras_vis.utils.model_modifiers import ReplaceToLinear
 
 replace2linear = ReplaceToLinear()
