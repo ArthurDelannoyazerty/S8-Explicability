@@ -42,7 +42,6 @@ for i, title in enumerate(image_titles):
     ax[i].set_title(title, fontsize=16)
     ax[i].imshow(images[i])
     ax[i].axis('off')
-    plt.title("Original images")
 plt.tight_layout()
 plt.savefig('saliency/images/output/original_images.png')
 plt.show()
@@ -103,7 +102,6 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
 plt.tight_layout()
 plt.savefig('saliency/images/output/saliency_classic.png')
-plt.title("Classic saliency")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -126,7 +124,6 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
 plt.tight_layout()
 plt.savefig('saliency/images/output/saliency_smoothgrad.png')
-plt.title("SmoothGrad Saliency")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -158,7 +155,6 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
 plt.tight_layout()
 plt.savefig('saliency/images/output/GradCAM.png')
-plt.title("GradCAM")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -188,7 +184,6 @@ for i, title in enumerate(image_titles):
     ax[i].imshow(heatmap, cmap='jet', alpha=0.5)
     ax[i].axis('off')
 plt.tight_layout()
-plt.title("GradCAM++")
 plt.savefig('saliency/images/output/gradcam_plus_plus.png')
 plt.show()
 
@@ -217,7 +212,6 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
 plt.tight_layout()
 plt.savefig('saliency/images/output/ScoreCAM.png')
-plt.title("ScoreCAM")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -247,7 +241,6 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
 plt.tight_layout()
 plt.savefig('saliency/images/output/fast_ScoreCAM.png')
-plt.title("Fast ScoreCAM")
 plt.show()
 
 
