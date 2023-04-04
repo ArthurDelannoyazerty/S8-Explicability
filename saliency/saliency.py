@@ -42,7 +42,7 @@ for i, title in enumerate(image_titles):
     ax[i].set_title(title, fontsize=16)
     ax[i].imshow(images[i])
     ax[i].axis('off')
-    plt.title("Original images")
+    plt.suptitle("Original images")
 plt.tight_layout()
 plt.savefig('saliency/images/output/original_images.png')
 plt.show()
@@ -51,7 +51,8 @@ plt.show()
 #---------------------------------------------------------------------------------------------------
 print("Executing : Modifying model")
 
-#Don't use softmax
+#En linéarisant la dernière couche, nous supprimons les effets des fonctions 
+#d'activation pour obtenir une sortie brute qui représente les activations de chaque neurone dans cette couche. 
 from tf_keras_vis.utils.model_modifiers import ReplaceToLinear
 
 replace2linear = ReplaceToLinear()
@@ -65,6 +66,7 @@ def model_modifier_function(cloned_model):
 #---------------------------------------------------------------------------------------------------
 print("Executing : Creating score function")
 
+# CategoricalScore = accuracy
 from tf_keras_vis.utils.scores import CategoricalScore
 
 # 1 is the imagenet index corresponding to Goldfish, 294 to Bear and 413 to Assault Rifle.
@@ -102,9 +104,9 @@ for i, title in enumerate(image_titles):
     ax[i].set_title(title, fontsize=16)
     ax[i].imshow(saliency_map[i], cmap='jet')
     ax[i].axis('off')
+    plt.suptitle("Classic saliency")
 plt.tight_layout()
 plt.savefig('saliency/images/output/saliency_classic.png')
-plt.title("Classic saliency")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -125,9 +127,9 @@ for i, title in enumerate(image_titles):
     ax[i].set_title(title, fontsize=14)
     ax[i].imshow(saliency_map[i], cmap='jet')
     ax[i].axis('off')
+    plt.suptitle("SmoothGrad Saliency")
 plt.tight_layout()
 plt.savefig('saliency/images/output/saliency_smoothgrad.png')
-plt.title("SmoothGrad Saliency")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -157,9 +159,9 @@ for i, title in enumerate(image_titles):
     ax[i].imshow(images[i])
     ax[i].imshow(heatmap, cmap='jet', alpha=0.5) # overlay
     ax[i].axis('off')
+    plt.suptitle("GradCAM")
 plt.tight_layout()
 plt.savefig('saliency/images/output/GradCAM.png')
-plt.title("GradCAM")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -188,8 +190,8 @@ for i, title in enumerate(image_titles):
     ax[i].imshow(images[i])
     ax[i].imshow(heatmap, cmap='jet', alpha=0.5)
     ax[i].axis('off')
+    plt.suptitle("GradCAM++")
 plt.tight_layout()
-plt.title("GradCAM++")
 plt.savefig('saliency/images/output/gradcam_plus_plus.png')
 plt.show()
 
@@ -216,9 +218,9 @@ for i, title in enumerate(image_titles):
     ax[i].imshow(images[i])
     ax[i].imshow(heatmap, cmap='jet', alpha=0.5)
     ax[i].axis('off')
+    plt.suptitle("ScoreCAM")
 plt.tight_layout()
 plt.savefig('saliency/images/output/ScoreCAM.png')
-plt.title("ScoreCAM")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -246,9 +248,9 @@ for i, title in enumerate(image_titles):
     ax[i].imshow(images[i])
     ax[i].imshow(heatmap, cmap='jet', alpha=0.5)
     ax[i].axis('off')
+    plt.suptitle("Fast ScoreCAM")
 plt.tight_layout()
 plt.savefig('saliency/images/output/fast_ScoreCAM.png')
-plt.title("Fast ScoreCAM")
 plt.show()
 
 
