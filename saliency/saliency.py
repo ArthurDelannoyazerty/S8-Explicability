@@ -48,7 +48,7 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("Original images")
 plt.tight_layout()
-plt.savefig(output_folder + 'original_images.png')
+plt.savefig(output_folder + '_input_images.png')
 plt.show()
 
 #teste
@@ -198,7 +198,7 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("GradCAM++")
 plt.tight_layout()
-plt.savefig(output_folder + 'gradcam_plus_plus.png')
+plt.savefig(output_folder + 'Gradcam_plus_plus.png')
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -256,7 +256,7 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("Fast ScoreCAM")
 plt.tight_layout()
-plt.savefig(output_folder + 'fast_ScoreCAM.png')
+plt.savefig(output_folder + 'ScoreCAM_fast.png')
 plt.show()
 
 
