@@ -52,7 +52,7 @@ plt.savefig(output_folder + 'original_images.png')
 plt.show()
 
 #teste
-print("test git")
+print("test git encore securite")
 
 #---------------------------------------------------------------------------------------------------
 print("Executing : Modifying model")
