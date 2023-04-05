@@ -2,6 +2,7 @@ import tensorflow as tf
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from keras.utils import load_img
+import numpy as np
 
 mpl.rcParams['figure.figsize'] = (8, 8)
 mpl.rcParams['axes.grid'] = False
@@ -25,9 +26,9 @@ def preprocess(image):
 def get_imagenet_label(probs):
   return decode_predictions(probs, top=1)[0][0]
 
-#image_path = tf.keras.utils.get_file('image-blanche-pour-absence-d-image-dans-catalogue-ne-pas-supprimer.jpg','https://www.nosmeilleurescourses.com/19866-big_default/image-blanche-pour-absence-d-image-dans-catalogue-ne-pas-supprimer.jpg')
+#image_path = tf.keras.utils.get_file('goldfish.jpg','https://github.com/ArthurDelannoyazerty/S8-Explicability/blob/376eefa50230c8a614f3bc361418dc82318c7d57/adversarial/images/input/goldfish.jpg')
 #image_raw = tf.io.read_file(image_path)
-image_raw = load_img('goldfish.jpg', target_size=(224,224))
+image_raw = load_img('images/input/goldfish.jpg', target_size=(224,224))
 #image = tf.image.decode_image(image_raw)
 
 
@@ -55,8 +56,8 @@ def create_adversarial_pattern(input_image, input_label):
   return signed_grad
 
 # Get the input label of the image.
-labrador_retriever_index = 2
-label = tf.one_hot(labrador_retriever_index, image_probs.shape[-1])
+image_index = 2
+label = tf.one_hot(image_index, image_probs.shape[-1])
 label = tf.reshape(label, (1, image_probs.shape[-1]))
 
 plt.figure()
@@ -65,12 +66,15 @@ plt.imshow(perturbations[0] * 0.5 + 0.5);  # To change [-1, 1] to [0,1]
 plt.show()
 
 def display_images(image, description):
+
   _, label, confidence = get_imagenet_label(pretrained_model.predict(image))
   plt.figure()
   plt.imshow(image[0]*0.5+0.5)
+  im = np.array(image[0]*0.5 + 0.5)
+  plt.imsave('images/input/goldfishattack.jpg', im)
   plt.title('{} \n {} : {:.2f}% Confidence'.format(description,
-                                                   label, confidence*100))
-  plt.imsave('imagesAttack/image_blank.jpg', image)
+                                                 label, confidence*100))
+  #plt.savefig('images/input/soldierattack.jpg')
   plt.show()
 
 
