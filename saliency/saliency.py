@@ -34,7 +34,7 @@ img3 = load_img('saliency/images/input/soldiers.jpg', target_size=(224, 224))
 images = np.asarray([np.array(img1), np.array(img2), np.array(img3)])
 
 # Preparing input data for VGG16
-X = preprocess_input(images)
+X = preprocess_input(np.array(img1))
 
 # Rendering
 f, ax = plt.subplots(nrows=1, ncols=3, figsize=(12, 4))
@@ -67,7 +67,7 @@ print("Executing : Creating score function")
 from tf_keras_vis.utils.scores import CategoricalScore
 
 # 1 is the imagenet index corresponding to Goldfish, 294 to Bear and 413 to Assault Rifle.
-score = CategoricalScore([1, 294, 413])
+score = CategoricalScore([1])
 
 # Instead of using CategoricalScore object,
 # you can also define the function from scratch as follows:
@@ -96,12 +96,13 @@ saliency_map = saliency(score, X)
 # saliency_map = normalize(saliency_map)
 
 # Render
-f, ax = plt.subplots(nrows=1, ncols=3, figsize=(12, 4))
-for i, title in enumerate(image_titles):
-    ax[i].set_title(title, fontsize=16)
-    ax[i].imshow(saliency_map[i], cmap='jet')
-    ax[i].axis('off')
-plt.tight_layout()
+#f, ax = plt.subplots(nrows=1, ncols=3, figsize=(12, 4))
+#for i, title in enumerate(image_titles):
+    #ax[i].set_title(title, fontsize=16)
+    #ax[i].imshow(saliency_map[i], cmap='jet')
+    #ax[i].axis('off')
+#plt.tight_layout()
+plt.imshow(saliency_map)
 plt.savefig('saliency/images/output/saliency_classic.png')
 plt.title("Classic saliency")
 plt.show()
