@@ -28,7 +28,7 @@ def get_imagenet_label(probs):
 
 #image_path = tf.keras.utils.get_file('goldfish.jpg','https://github.com/ArthurDelannoyazerty/S8-Explicability/blob/376eefa50230c8a614f3bc361418dc82318c7d57/adversarial/images/input/goldfish.jpg')
 #image_raw = tf.io.read_file(image_path)
-image_raw = load_img('images/input/goldfish.jpg', target_size=(224,224))
+image_raw = load_img('images/input/soldiers.jpg', target_size=(224,224))
 #image = tf.image.decode_image(image_raw)
 
 
@@ -56,7 +56,7 @@ def create_adversarial_pattern(input_image, input_label):
   return signed_grad
 
 # Get the input label of the image.
-image_index = 2
+image_index = 413 #goldfish = 1; brown bear = 294; assault rifle = 413
 label = tf.one_hot(image_index, image_probs.shape[-1])
 label = tf.reshape(label, (1, image_probs.shape[-1]))
 
@@ -71,7 +71,7 @@ def display_images(image, description):
   plt.figure()
   plt.imshow(image[0]*0.5+0.5)
   im = np.array(image[0]*0.5 + 0.5)
-  plt.imsave('images/input/goldfishattack.jpg', im)
+  plt.imsave('images/image tests/soldiersFGSM.png', im)
   plt.title('{} \n {} : {:.2f}% Confidence'.format(description,
                                                  label, confidence*100))
   #plt.savefig('images/input/soldierattack.jpg')
