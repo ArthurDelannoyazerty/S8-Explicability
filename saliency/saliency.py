@@ -51,6 +51,8 @@ plt.tight_layout()
 plt.savefig(output_folder + 'original_images.png')
 plt.show()
 
+#teste
+print("test git")
 
 #---------------------------------------------------------------------------------------------------
 print("Executing : Modifying model")
