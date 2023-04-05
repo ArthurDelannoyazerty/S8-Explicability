@@ -15,6 +15,9 @@ data = tf.keras.datasets.mnist
 x_train_norm = x_train / 255
 x_test_norm = x_test / 255
 
+#---------------------------------------------------------------------------------------------------
+img1 = x_test_norm[1]
+
 
 #---------------------------------------------------------------------------------------------------
 print("Executing : creating mnist model")
@@ -37,7 +40,7 @@ print("Executing : Creating score function")
 
 from tf_keras_vis.utils.scores import CategoricalScore
 
-score = CategoricalScore(y_test[0])
+score = CategoricalScore([y_test[1]])
 
 #---------------------------------------------------------------------------------------------------
 print("Executing : Classic Saliency")
@@ -46,14 +49,16 @@ from keras import backend as K
 from tf_keras_vis.saliency import Saliency
 # from tf_keras_vis.utils import normalize
 
-img = x_test_norm[0]
-img_array = np.array(img)
-
 # Create Saliency object.
 saliency = Saliency(model,
-                    clone=True) 
+                    model_modifier=replace2linear,
+                    clone=True
+)
 
-saliency_map = (score, img_array)
+other_score = y_test[1]
+
+# Generate saliency map
+saliency_map = saliency(score, img1)
 
 plt.imshow(saliency_map, cmap='jet')
 plt.savefig('saliency/images/output/saliency_classic_mnist.png')
