@@ -12,7 +12,7 @@ from tf_keras_vis.utils import num_of_gpus
 _, gpus = num_of_gpus()
 print('Tensorflow recognized {} GPUs'.format(gpus))
 
-output_folder = "saliency/images/output/FGSM_MobileNetV2/"
+output_folder = "saliency/images/output/VGG16/PGD_MobileNetV2/"
 
 #---------------------------------------------------------------------------------------------------
 print("Executing : Load Model")
@@ -32,9 +32,9 @@ from keras.applications.vgg16 import preprocess_input
 image_titles = ['Goldfish', 'Bear', 'Assault rifle']
 
 # Load images and Convert them to a Numpy array
-img1 = load_img('adversarial/images/output/FGSM_MobileNetV2/goldfish.jpg', target_size=(224, 224))
-img2 = load_img('adversarial/images/output/FGSM_MobileNetV2/bear.jpg', target_size=(224, 224))
-img3 = load_img('adversarial/images/output/FGSM_MobileNetV2/soldiers.jpg', target_size=(224, 224))
+img1 = load_img('adversarial\images\output\PGD\goldfishPGD.png', target_size=(224, 224))
+img2 = load_img('adversarial\images\output\PGD\\bearPGD.png', target_size=(224, 224))
+img3 = load_img('adversarial\images\output\PGD\soldiersPGD.png', target_size=(224, 224))
 images = np.asarray([np.array(img1), np.array(img2), np.array(img3)])
 
 # Preparing input data for VGG16
