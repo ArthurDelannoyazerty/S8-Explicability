@@ -1,5 +1,8 @@
 print("Executing : Load libraries")
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -9,6 +12,7 @@ from tf_keras_vis.utils import num_of_gpus
 _, gpus = num_of_gpus()
 print('Tensorflow recognized {} GPUs'.format(gpus))
 
+output_folder = "saliency/images/output/FGSM_MobileNetV2/"
 
 #---------------------------------------------------------------------------------------------------
 print("Executing : Load Model")
@@ -28,9 +32,9 @@ from keras.applications.vgg16 import preprocess_input
 image_titles = ['Goldfish', 'Bear', 'Assault rifle']
 
 # Load images and Convert them to a Numpy array
-img1 = load_img('saliency/images/input/goldfish.jpg', target_size=(224, 224))
-img2 = load_img('saliency/images/input/bear.jpg', target_size=(224, 224))
-img3 = load_img('saliency/images/input/soldiers.jpg', target_size=(224, 224))
+img1 = load_img('adversarial/images/output/FGSM_MobileNetV2/goldfish.jpg', target_size=(224, 224))
+img2 = load_img('adversarial/images/output/FGSM_MobileNetV2/bear.jpg', target_size=(224, 224))
+img3 = load_img('adversarial/images/output/FGSM_MobileNetV2/soldiers.jpg', target_size=(224, 224))
 images = np.asarray([np.array(img1), np.array(img2), np.array(img3)])
 
 # Preparing input data for VGG16
@@ -44,9 +48,11 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("Original images")
 plt.tight_layout()
-plt.savefig('saliency/images/output/original_images.png')
+plt.savefig(output_folder + '_input_images.png')
 plt.show()
 
+#teste
+print("test git encore securite")
 
 #---------------------------------------------------------------------------------------------------
 print("Executing : Modifying model")
@@ -106,7 +112,7 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("Classic saliency")
 plt.tight_layout()
-plt.savefig('saliency/images/output/saliency_classic.png')
+plt.savefig(output_folder + 'saliency_classic.png')
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -129,7 +135,7 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("SmoothGrad Saliency")
 plt.tight_layout()
-plt.savefig('saliency/images/output/saliency_smoothgrad.png')
+plt.savefig(output_folder + 'saliency_smoothgrad.png')
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -161,7 +167,7 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("GradCAM")
 plt.tight_layout()
-plt.savefig('saliency/images/output/GradCAM.png')
+plt.savefig(output_folder + 'GradCAM.png')
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -192,7 +198,7 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("GradCAM++")
 plt.tight_layout()
-plt.savefig('saliency/images/output/gradcam_plus_plus.png')
+plt.savefig(output_folder + 'Gradcam_plus_plus.png')
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -220,7 +226,7 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("ScoreCAM")
 plt.tight_layout()
-plt.savefig('saliency/images/output/ScoreCAM.png')
+plt.savefig(output_folder + 'ScoreCAM.png')
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -250,7 +256,7 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("Fast ScoreCAM")
 plt.tight_layout()
-plt.savefig('saliency/images/output/fast_ScoreCAM.png')
+plt.savefig(output_folder + 'ScoreCAM_fast.png')
 plt.show()
 
 
