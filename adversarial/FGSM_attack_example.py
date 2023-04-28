@@ -7,8 +7,7 @@ import numpy as np
 mpl.rcParams['figure.figsize'] = (8, 8)
 mpl.rcParams['axes.grid'] = False
 
-pretrained_model = tf.keras.applications.MobileNetV2(include_top=True,
-                                                     weights='imagenet')
+pretrained_model = tf.keras.applications.MobileNetV2(include_top=True, weights='imagenet')
 pretrained_model.trainable = False
 
 # ImageNet labels
