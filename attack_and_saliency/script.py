@@ -73,12 +73,11 @@ def get_attacked_image(image):
 
 #---------------------------------------------------------------------------------------------------------
 # metric
+from metrics import *
+# TO DO mettre les chemins des 2 cartes de sailance à étudier
+# path_sal_map =
+# path_attacked_sal_map = 
 
-def get_score_metric_difference(image, attacked_image):
-    #TODO 
-    difference = abs(image - attacked_image)
-    score_metric = sum(difference)
-    return score_metric
 
 #---------------------------------------------------------------------------------------------------------
 # Main Program
@@ -111,6 +110,8 @@ smooth_saliency_attacked_image = saliency(score, image, smooth_samples=20, smoot
 
 
 # difference metric
-score_metric_classic_saliency = get_score_metric_difference(saliency_image, saliency_attacked_image)
-score_metric_smooth_saliency  = get_score_metric_difference(smooth_saliency_image, smooth_saliency_attacked_image)
+# diff_abs(path_sal_map,path_attacked_sal_map)
+# diff_quadratique(path_sal_map,path_attacked_sal_map)
+# coef_correlation(path_sal_map,path_attacked_sal_map)
+# ssim_func(path_sal_map,path_attacked_sal_map)
 
