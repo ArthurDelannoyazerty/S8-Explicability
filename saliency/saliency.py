@@ -46,7 +46,7 @@ for i, title in enumerate(image_titles):
     ax[i].set_title(title, fontsize=16)
     ax[i].imshow(images[i])
     ax[i].axis('off')
-    plt.suptitle("Original images")
+    plt.title("Original images")
 plt.tight_layout()
 plt.savefig(output_folder + '_input_images.png')
 plt.show()
@@ -112,7 +112,8 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("Classic saliency")
 plt.tight_layout()
-plt.savefig(output_folder + 'saliency_classic.png')
+plt.savefig('saliency/images/output/saliency_classic.png')
+plt.title("Classic saliency")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -135,7 +136,8 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("SmoothGrad Saliency")
 plt.tight_layout()
-plt.savefig(output_folder + 'saliency_smoothgrad.png')
+plt.savefig('saliency/images/output/saliency_smoothgrad.png')
+plt.title("SmoothGrad Saliency")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -167,7 +169,8 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("GradCAM")
 plt.tight_layout()
-plt.savefig(output_folder + 'GradCAM.png')
+plt.savefig('saliency/images/output/GradCAM.png')
+plt.title("GradCAM")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -198,7 +201,8 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("GradCAM++")
 plt.tight_layout()
-plt.savefig(output_folder + 'Gradcam_plus_plus.png')
+plt.title("GradCAM++")
+plt.savefig('saliency/images/output/gradcam_plus_plus.png')
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -226,7 +230,8 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("ScoreCAM")
 plt.tight_layout()
-plt.savefig(output_folder + 'ScoreCAM.png')
+plt.savefig('saliency/images/output/ScoreCAM.png')
+plt.title("ScoreCAM")
 plt.show()
 
 #---------------------------------------------------------------------------------------------------
@@ -256,7 +261,8 @@ for i, title in enumerate(image_titles):
     ax[i].axis('off')
     plt.suptitle("Fast ScoreCAM")
 plt.tight_layout()
-plt.savefig(output_folder + 'ScoreCAM_fast.png')
+plt.savefig('saliency/images/output/fast_ScoreCAM.png')
+plt.title("Fast ScoreCAM")
 plt.show()
 
 
