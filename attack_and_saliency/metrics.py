@@ -1,18 +1,22 @@
 import numpy as np
 import cv2
 from scipy.stats import pearsonr
-from skimage.metrics import structural_similarity as ssimgit
+from skimage.metrics import structural_similarity as ssim
+
+path_attacked = r"C:\Users\lucie\Documents\Programmation\explicability\S8-Explicability\attack_and_saliency\images\attacked_saliency.png"
+path = r"C:\Users\lucie\Documents\Programmation\explicability\S8-Explicability\attack_and_saliency\images\saliency.png"
 
 # Ouvrir les cartes de saillance
 def img_open(path_sal_map,path_attacked_sal_map):
-    img1 = cv2.imread(path_sal_map)
+    img1 = cv2.imread("attack_and_saliency\images\saliency.png")
     img2 = cv2.imread(path_attacked_sal_map)
     return img1,img2
 
 # Calcul de la différence absolue
 # Plus la valeur est proche de 0 plus les images sont similaires
 def diff_abs(path_sal_map,path_attacked_sal_map):
-    img1, img2 = img_open(path_sal_map,path_attacked_sal_map)
+    img1 = cv2.imread(path_sal_map)
+    img2 = cv2.imread(path_attacked_sal_map)
     return np.sum(np.abs(img1 - img2))
 
 # Calcul de la différence quadratique (mse)
@@ -38,4 +42,4 @@ def ssim_func(path_sal_map,path_attacked_sal_map):
     valssim = ssim(gray_img1, gray_img2)
     return valssim
 
-print(diff_abs(path1,path2))
+print(diff_abs(path,path_attacked))
