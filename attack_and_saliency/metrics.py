@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 from scipy.stats import pearsonr
-from skimage.metrics import structural_similarity as ssim
+from skimage.metrics import structural_similarity as ssimgit
 
 # Ouvrir les cartes de saillance
 def img_open(path_sal_map,path_attacked_sal_map):
@@ -37,3 +37,5 @@ def ssim_func(path_sal_map,path_attacked_sal_map):
     gray_img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
     valssim = ssim(gray_img1, gray_img2)
     return valssim
+
+print(diff_abs(path1,path2))
