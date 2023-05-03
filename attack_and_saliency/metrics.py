@@ -2,13 +2,16 @@ import numpy as np
 import cv2
 from scipy.stats import pearsonr
 from skimage.metrics import structural_similarity as ssim
+import os
 
-path_attacked = r"C:\Users\lucie\Documents\Programmation\explicability\S8-Explicability\attack_and_saliency\images\attacked_saliency.png"
-path = r"C:\Users\lucie\Documents\Programmation\explicability\S8-Explicability\attack_and_saliency\images\saliency.png"
+path_project_root = os.path.abspath('')
+
+path_attacked = os.path.join(path_project_root, "attack_and_saliency\images\\attacked_saliency.png")
+path = os.path.join(path_project_root, "attack_and_saliency\images\saliency.png")
 
 # Ouvrir les cartes de saillance
 def img_open(path_sal_map,path_attacked_sal_map):
-    img1 = cv2.imread("attack_and_saliency\images\saliency.png")
+    img1 = cv2.imread(path_sal_map)
     img2 = cv2.imread(path_attacked_sal_map)
     return img1,img2
 
@@ -43,3 +46,6 @@ def ssim_func(path_sal_map,path_attacked_sal_map):
     return valssim
 
 print(diff_abs(path,path_attacked))
+print(diff_quadratique(path,path_attacked))
+print(coef_correlation(path,path_attacked))
+print(ssim_func(path,path_attacked))
